@@ -48,12 +48,14 @@ class Channel:
         loop.run_until_complete(self._join(payload))
         return self
 
-    async def join_async(self) -> None:
+    async def join_async(self, payload: Dict[str, Any] = {}) -> None:
         """
         Wrapper for async def _join().
+        :param payload: Optional, additional payload, which is sent to the
+                        server, when a channel is joined.
         :return: None
         """
-        await self._join()
+        await self._join(payload)
 
     async def _join(self, payload: Dict[str, Any]) -> None:
         """
